@@ -10,17 +10,11 @@ import { FaceSnap } from '../models/face-snap';
 export class FaceSnapComponent implements OnInit {
   @Input() faceSnap!: FaceSnap;
 
-  txtLike!: string;
+  txtLikeButton!: string;
   isLiked!: boolean;
 
   ngOnInit(): void {
-    this.title = 'Teddy Bear';
-    this.description = 'My best friend';
-    this.imgUrl =
-      'https://plus.unsplash.com/premium_photo-1664373233010-7c4abae40f78?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-    this.createdDate = new Date();
-    this.likeNb = 0;
-    this.txtLike = 'Like it !';
+    this.txtLikeButton = 'Like it !';
     this.isLiked = false;
   }
 
@@ -34,14 +28,14 @@ export class FaceSnapComponent implements OnInit {
   }
 
   like() {
-    this.likeNb += 1;
-    this.txtLike = 'Liked !';
+    this.faceSnap.like();
+    this.txtLikeButton = 'Liked !';
     this.isLiked = true;
   }
 
   unLike() {
-    this.likeNb -= 1;
-    this.txtLike = 'Like it !';
+    this.faceSnap.unLike();
+    this.txtLikeButton = 'Like it !';
     this.isLiked = false;
   }
 }

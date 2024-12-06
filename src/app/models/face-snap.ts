@@ -8,10 +8,10 @@ export class FaceSnap {
   ) {}
 
   like(): void {
-    this.likeNb += 1;
+    this.likeNb++;
   }
 
   unLike(): void {
-    this.likeNb -= 1;
+    this.likeNb--;
   }
 }

@@ -1,12 +1,11 @@
 <div class="face-snap-card">
-  <p>face-snap works!</p>
   <h2>{{ faceSnap.title }}</h2>
-  <img [src]="faceSnap.imgUrl" [alt]="title" />
+  <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title" />
   <p>{{ faceSnap.description }}</p>
-  <p>Facesnap crée le {{ createdDate }}</p>
+  <p>Facesnap crée le {{ faceSnap.createdDate }}</p>
 
   <p>
-    <button (click)="onLike()">{{ txtLike }}</button>👍
+    <button (click)="onLike()">{{ txtLikeButton }}</button>👍
     {{ faceSnap.likeNb }}
   </p>
 </div>
