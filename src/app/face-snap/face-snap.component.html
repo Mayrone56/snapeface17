@@ -6,6 +6,8 @@
 
   <p>
     <button (click)="onLike()">{{ txtLikeButton }}</button>👍
-    {{ faceSnap.likeNb }}
+    <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.likeNb + ', 0)' }">
+      {{ faceSnap.likeNb }}
+    </span>
   </p>
 </div>

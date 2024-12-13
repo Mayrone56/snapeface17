@@ -27,14 +27,14 @@ export class AppComponent implements OnInit {
       "Mais évidemment c'est sans alcool!!",
       'https://www.serieously.com/app/uploads/2024/08/merlin-kaamelott.jpg',
       new Date(),
-      10
+      150
     );
     this.myLastSnap = new FaceSnap(
       'Provencal le Gaulois',
       "Tout le monde s'accorde à dire que c'est une tanche et ça c'est pas une légende",
       'https://www.serieously.com/app/uploads/2023/12/perceval-dans-kaamelott.jpg',
       new Date(),
-      10
+      200
     );
   }
 }
