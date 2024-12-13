@@ -1,4 +1,6 @@
 export class FaceSnap {
+  location?: string;
+
   constructor(
     public title: string,
     public description: string,
@@ -13,5 +15,9 @@ export class FaceSnap {
 
   unLike(): void {
     this.likeNb--;
+  }
+
+  setLocation(location: string): void {
+    this.location = location;
   }
 }

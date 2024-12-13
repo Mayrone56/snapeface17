@@ -1,4 +1,5 @@
-<h1 style="color: red">J'en suis à "Conditionnez l'affichage des éléments"</h1>
-<app-face-snap [faceSnap]="myFirstSnap"></app-face-snap>
-<app-face-snap [faceSnap]="mySnap"></app-face-snap>
-<app-face-snap [faceSnap]="myLastSnap"></app-face-snap>
+<h1 style="color: red">Ajoutez du style dynamique</h1>
+
+@for (faceSnap of faceSnaps; track faceSnap.title) {
+<app-face-snap [faceSnap]="faceSnap" />
+}
