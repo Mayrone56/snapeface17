@@ -7,13 +7,16 @@ import {
   LowerCasePipe,
   TitleCasePipe,
   DatePipe,
-  DecimalPipe,
-  PercentPipe,
-  CurrencyPipe,
+  // DecimalPipe,
+  // PercentPipe,
+  // CurrencyPipe,
 } from '@angular/common';
+import { FaceSnapsService } from '../services/face-snaps.service';
+import { LikeType } from '../models/like-type.type';
 
 @Component({
   selector: 'app-face-snap',
+  standalone: true,
   imports: [
     NgStyle,
     NgClass,
@@ -38,28 +41,29 @@ export class FaceSnapComponent implements OnInit {
   percentNumber: number = 0.4567;
   currencyNumber: number = 12345.45;
 
+  constructor(private faceSnapsService: FaceSnapsService) {}
+
   ngOnInit(): void {
     this.txtLikeButton = 'Like it !';
     this.isLiked = false;
   }
 
   onLike(): void {
-    // this.likeNb === 0 ? (this.likeNb += 1) : (this.likeNb -= 1);
     if (this.isLiked) {
       this.unLike();
     } else {
-      this.like();
+      this.addLike();
     }
   }
 
-  like() {
-    this.faceSnap.like();
+  addLike() {
+    this.faceSnapsService.likeFaceSnapById(this.faceSnap.id, 'like');
     this.txtLikeButton = 'Liked !';
     this.isLiked = true;
   }
 
   unLike() {
-    this.faceSnap.unLike();
+    this.faceSnapsService.likeFaceSnapById(this.faceSnap.id, 'unlike');
     this.txtLikeButton = 'Like it !';
     this.isLiked = false;
   }
