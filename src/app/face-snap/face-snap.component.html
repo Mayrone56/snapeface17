@@ -1,13 +1,19 @@
 <div class="face-snap-card" [ngClass]="{ liked: isLiked }">
-  <h2>{{ faceSnap.title }}</h2>
-  @if (faceSnap.location) {
-  <p>Localisation : {{ faceSnap.location }}</p>
+  <h2>{{ faceSnap.title | uppercase }}</h2>
+  @if (faceSnap.location | titlecase) {
+  <p>Localisation : {{ faceSnap.location | lowercase }}</p>
   } @else {
   <p>Pas de localisation</p>
   }
   <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title" />
   <p>{{ faceSnap.description }}</p>
-  <p>Facesnap crée le {{ faceSnap.createdDate }}</p>
+  <p>
+    Facesnap crée le {{ faceSnap.createdDate | date : "d MMMM yyyy, à HH:mm" }}
+  </p>
+  <!-- <p>{{ 44645646.31 | number : "1.0-1" }}</p> -->
+  <!-- <p>{{ largeNumber | number : "1.0-1" }}</p>
+  <p>{{ percentNumber | percent : "1.0-3" }}</p>
+  <p>{{ currencyNumber | currency : "EUR" : "code" : "1.0-0" }}</p> -->
 
   <p>
     <button (click)="onLike()">{{ txtLikeButton }}</button>👍

@@ -1,45 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FaceSnapComponent } from './face-snap/face-snap.component';
-import { FaceSnap } from './models/face-snap';
+import { Component } from '@angular/core';
+import { FaceSnapListComponent } from './face-snap-list/face-snap-list.component';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FaceSnapComponent],
+  imports: [FaceSnapListComponent, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
-  myFirstSnap!: FaceSnap;
-  mySnap!: FaceSnap;
-  myLastSnap!: FaceSnap;
-
-  faceSnaps!: FaceSnap[];
-
-  ngOnInit(): void {
-    this.faceSnaps = [
-      new FaceSnap(
-        'Le sanglier de cornouaille',
-        '"Mi-ours, Mi-sanglier',
-        'https://www.serieously.com/app/uploads/2021/08/sans-titre-28-13.jpg',
-        new Date(),
-        10
-      ),
-      new FaceSnap(
-        "Coco l'asticot",
-        "Mais évidemment c'est sans alcool!!",
-        'https://www.serieously.com/app/uploads/2024/08/merlin-kaamelott.jpg',
-        new Date(),
-        10
-      ),
-      new FaceSnap(
-        'Provencal le Gaulois',
-        "Tout le monde s'accorde à dire que c'est une tanche et ça c'est pas une légende",
-        'https://www.serieously.com/app/uploads/2023/12/perceval-dans-kaamelott.jpg',
-        new Date(),
-        10
-      ),
-    ];
-    this.faceSnaps[1].setLocation('Laboratiore de Merlin');
-  }
-}
+export class AppComponent {}
