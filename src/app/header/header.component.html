@@ -1,3 +1,14 @@
 <header>
-  <h1>Snapface</h1>
+  <h1>{{ "Snapface" | uppercase }}</h1>
+  <nav>
+    <!-- [routerLinkActiveOptions] permet de souligner explicitement les enfants du composants, sans ça le
+    comoosant et ses enfants sont soulignés -->
+    <a
+      routerLink=""
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+    <a routerLink="facesnaps" routerLinkActive="active">FaceSnaps</a>
+  </nav>
 </header>
