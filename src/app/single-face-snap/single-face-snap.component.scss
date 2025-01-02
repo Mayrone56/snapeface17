@@ -1,16 +1,14 @@
 .face-snap-card {
   box-sizing: border-box;
-  width: 50%;
-  margin: 20px auto;
-  padding: 10px 30px;
-  box-shadow: lightgray 4px 4px 20px;
-  height: 150px;
-  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-
+  justify-content: center;
+  gap: 24px;
+  width: 50%;
+  margin: 20px auto;
+  padding: 24px;
+  box-shadow: lightgray 4px 4px 20px;
+  border-radius: 20px;
   img {
     width: 100%;
   }
