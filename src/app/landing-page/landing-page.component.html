@@ -1,6 +1,25 @@
 <div class="landing-block">
+  <!-- <form (ngSubmit)="onSubmitForm()"> -->
+  <!-- Référence locale, créée avec un dièse  #  -->
+  <!-- Permet à Angular d'accéder à l'élément pour, par exemple, l'envoyer comme argument à une méthode comme vous le faites ici. -->
+  <!-- Ici il s'agit de la directive ngForm et non du type NgForm -->
+  <!-- Cette directive est passée à toutes les balises form par Angular -->
+  <form #emailForm="ngForm" (ngSubmit)="onSubmitForm(emailForm)">
+    <label for="emailInput"
+      >Inscrivez-vous pour recevoir notre newsletter!</label
+    >
+    <!-- [{}] Two way binding, liaison à double sens -->
+    <input
+      type="email"
+      id="emailInput"
+      name="userEmail"
+      [(ngModel)]="userEmail"
+    />
+    <button type="submit">OK</button>
+  </form>
+
   <img src="/images/logo_snapface.png" alt="Snapface logo" />
   <div class="landing-links">
-    <button (click)="onClick()">Continuer vers Snapface</button>
+    <button (click)="onContinue()">Continuer vers Snapface</button>
   </div>
 </div>

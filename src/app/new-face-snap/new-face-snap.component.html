@@ -1,0 +1,40 @@
+<div class="form-card">
+  <h2>NOUVEAU FACESNAP</h2>
+  <form [formGroup]="snapForm">
+    <div class="form-group">
+      <label for="title">Titre</label>
+      <!-- formControlName correspond au noms des differents champs dans le component -->
+      <input type="text" id="title" formControlName="title" />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        type="text"
+        id="description"
+        formControlName="description"
+        rows="4"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="imgUrl">Url de l'image</label>
+      <input type="text" id="imgUrl" formControlName="imgUrl" />
+    </div>
+    <div class="form-group">
+      <label for="location">Lieu</label>
+      <input type="text" id="location" formControlName="location" />
+    </div>
+    <div class="action-button">
+      <button type="submit" (click)="onSubmitForm()">Save</button>
+    </div>
+  </form>
+</div>
+<!-- as faceSnap est un alias qui nous permet d'utiliser un facesnap de façon statique -->
+<div class="face-snap-card" *ngIf="faceSnapPreview$ | async as faceSnap">
+  <h2>{{ faceSnap.title | uppercase }}</h2>
+  <p>
+    Mis en ligne {{ faceSnap.createdDate | date : "à HH:mm, le d MMMM yyyy" }}
+  </p>
+  <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title" />
+  <p>{{ faceSnap.description }}</p>
+  <p *ngIf="faceSnap.location">Photo prise à {{ faceSnap.location }}</p>
+</div>
