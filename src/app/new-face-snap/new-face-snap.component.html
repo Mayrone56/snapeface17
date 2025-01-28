@@ -16,15 +16,22 @@
       ></textarea>
     </div>
     <div class="form-group">
-      <label for="imgUrl">Url de l'image</label>
-      <input type="text" id="imgUrl" formControlName="imgUrl" />
+      <label for="imageUrl">Url de l'image</label>
+      <input type="text" id="imageUrl" formControlName="imageUrl" />
     </div>
     <div class="form-group">
       <label for="location">Lieu</label>
       <input type="text" id="location" formControlName="location" />
     </div>
     <div class="action-button">
-      <button type="submit" (click)="onSubmitForm()">Save</button>
+      <!-- <button type="submit" (click)="onSubmitForm()" [disabled]="snapForm.invalid">Save</button> -->
+      <button
+        type="submit"
+        (click)="onSubmitForm()"
+        [disabled]="snapForm.invalid"
+      >
+        Enregistrer
+      </button>
     </div>
   </form>
 </div>
@@ -34,7 +41,7 @@
   <p>
     Mis en ligne {{ faceSnap.createdDate | date : "à HH:mm, le d MMMM yyyy" }}
   </p>
-  <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title" />
+  <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title" />
   <p>{{ faceSnap.description }}</p>
   <p *ngIf="faceSnap.location">Photo prise à {{ faceSnap.location }}</p>
 </div>

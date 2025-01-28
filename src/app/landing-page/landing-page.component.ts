@@ -13,9 +13,9 @@ export class LandingPageComponent implements OnInit {
   // Relé avec le two way binding
   userEmail!: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onContinue() {
     // navigation programmatique, qui est une autre façon que routerLink

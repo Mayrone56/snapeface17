@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
 import { FaceSnapComponent } from '../face-snap/face-snap.component';
 import { FaceSnapsService } from '../services/face-snaps.service';
-import { interval, Subject, take, takeUntil, tap } from 'rxjs';
+import { interval, Observable, Subject, take, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-face-snap-list',
@@ -13,16 +13,17 @@ import { interval, Subject, take, takeUntil, tap } from 'rxjs';
 })
 export class FaceSnapListComponent implements OnInit, OnDestroy {
   faceSnaps!: FaceSnap[];
+  faceSnaps$!: Observable<FaceSnap[]>;
   // On crée un subject qu'on déclare et initialise qui va emettre des boolean
   // Subject est un type special d'observable, on peut le faire emttre à la demande
   // Un subject est typé comme tout Observable
   private destroy$!: Subject<boolean>;
 
-  constructor(private faceSnapsServices: FaceSnapsService) {}
+  constructor(private faceSnapsServices: FaceSnapsService) { }
 
   ngOnInit(): void {
     this.destroy$ = new Subject<boolean>();
-    this.faceSnaps = this.faceSnapsServices.getFaceSnaps();
+    // this.faceSnaps = this.faceSnapsServices.getAllFaceSnaps();
 
     interval(1000)
       .pipe(

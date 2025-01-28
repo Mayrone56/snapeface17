@@ -9,7 +9,7 @@
   } @else {
   <p>Pas de localisation</p>
   }
-  <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title" />
+  <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title" />
   <p>{{ faceSnap.description }}</p>
   <p>
     Facesnap crée le {{ faceSnap.createdDate | date : "d MMMM yyyy, à HH:mm" }}
@@ -21,8 +21,8 @@
 
   <p>
     <button (click)="onLike()">{{ txtLikeButton }}</button>👍
-    <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.likeNb + ', 0)' }">
-      {{ faceSnap.likeNb }}
+    <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }">
+      {{ faceSnap.snaps }}
     </span>
   </p>
 </div>

@@ -41,7 +41,7 @@ export class SingleFaceSnapComponent implements OnInit {
   constructor(
     private faceSnapsService: FaceSnapsService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.prepareInterface();
@@ -57,13 +57,13 @@ export class SingleFaceSnapComponent implements OnInit {
   }
 
   addLike() {
-    this.faceSnapsService.likeFaceSnapById(this.faceSnap.id, 'like');
+    this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'like');
     this.txtLikeButton = 'Liked !';
     this.isLiked = true;
   }
 
   unLike() {
-    this.faceSnapsService.likeFaceSnapById(this.faceSnap.id, 'unlike');
+    this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unlike');
     this.txtLikeButton = 'Like it !';
     this.isLiked = false;
   }
