@@ -1,4 +1,9 @@
-<div class="face-snap-card" [ngClass]="{ liked: isLiked }">
+<!-- La reponse du serveur sera disponible sous cet alias as faceSnap -->
+<div
+  class="face-snap-card"
+  *ngIf="faceSnap$ | async as faceSnap"
+  [ngClass]="{ liked: isLiked }"
+>
   <!-- Si on ne met pas de / avant facesnaps, l'url essaira d'ajouter facesnaps à l'url après l'id -->
   <!-- Pour naviguer vers une route absolue (et non relative), n'oubliez pas d'ajouter un  /  au début de la route demandée. -->
   <!-- Car c'est une route dynamique qui est générée à chaque fois -->

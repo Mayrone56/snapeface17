@@ -12,54 +12,61 @@ export class FaceSnapsService {
     private http: HttpClient
   ) { }
 
-  private faceSnaps: FaceSnap[] = [
-    new FaceSnap(
-      'Le sanglier de cornouaille',
-      '"Mi-ours, Mi-sanglier',
-      'https://www.serieously.com/app/uploads/2021/08/sans-titre-28-13.jpg',
-      new Date(),
-      10
-    ),
-    new FaceSnap(
-      "Coco l'asticot",
-      "Mais évidemment c'est sans alcool!!",
-      'https://www.serieously.com/app/uploads/2024/08/merlin-kaamelott.jpg',
-      new Date(),
-      10
-    )
-    // .withLocation('Laboratiore de Merlin')
-    ,
-    new FaceSnap(
-      'Provencal le Gaulois',
-      "Tout le monde s'accorde à dire que c'est une tanche et ça c'est pas une légende",
-      'https://www.serieously.com/app/uploads/2023/12/perceval-dans-kaamelott.jpg',
-      new Date(),
-      10
-    ),
-  ];
+  // private faceSnaps: FaceSnap[] = [
+  //   new FaceSnap(
+  //     'Le sanglier de cornouaille',
+  //     '"Mi-ours, Mi-sanglier',
+  //     'https://www.serieously.com/app/uploads/2021/08/sans-titre-28-13.jpg',
+  //     new Date(),
+  //     10
+  //   ),
+  //   new FaceSnap(
+  //     "Coco l'asticot",
+  //     "Mais évidemment c'est sans alcool!!",
+  //     'https://www.serieously.com/app/uploads/2024/08/merlin-kaamelott.jpg',
+  //     new Date(),
+  //     10
+  //   )
+  //   // .withLocation('Laboratiore de Merlin')
+  //   ,
+  //   new FaceSnap(
+  //     'Provencal le Gaulois',
+  //     "Tout le monde s'accorde à dire que c'est une tanche et ça c'est pas une légende",
+  //     'https://www.serieously.com/app/uploads/2023/12/perceval-dans-kaamelott.jpg',
+  //     new Date(),
+  //     10
+  //   ),
+  // ];
+
+  faceSnaps: FaceSnap[] = [];
 
   // getAllFaceSnaps(): FaceSnap[] {
   //   return [...this.faceSnaps];
   // }
 
   getAllFaceSnaps(): Observable<FaceSnap[]> {
+    // Requete HTTP pour récupérer les facesnaps
+    // Retroune des Observables qui gerent l'asynchrone
     return this.http.get<FaceSnap[]>('http://localhost:3000/facesnaps');
   }
 
-  getFaceSnapById(faceSnapId: string): FaceSnap {
-    const foundFaceSnap = this.faceSnaps.find(
-      (faceSnap) => faceSnap.id === faceSnapId
-    );
-    if (!foundFaceSnap) {
-      throw new Error('FaceSnap not found!');
-    }
-    return foundFaceSnap;
+  getFaceSnapById(faceSnapId: number): Observable<FaceSnap> {
+    // const foundFaceSnap = this.faceSnaps.find(
+    //   (faceSnap) => faceSnap.id === faceSnapId
+    // );
+    // if (!foundFaceSnap) {
+    //   throw new Error('FaceSnap not found!');
+    // }
+    // return foundFaceSnap;
+    return this.http.get<FaceSnap>(`http://localhost:3000/facesnaps/${faceSnapId}`)
+    return this.http.get<FaceSnap>(`http://localhost:3000/facesnaps/${faceSnapId}`);
+
   }
 
   snapFaceSnapById(faceSnapId: string, snapType: snapType): void {
-    const faceSnap = this.getFaceSnapById(faceSnapId);
-    snapType === "like" ? faceSnap.snaps++ : faceSnap.snaps--;
-    // faceSnap.like(snapType);
+    // const faceSnap = this.getFaceSnapById(faceSnapId);
+    // snapType === "like" ? faceSnap.snaps++ : faceSnap.snaps--;
+    // // faceSnap.like(snapType);
   }
 
   addFaceSnap(formValue: {
