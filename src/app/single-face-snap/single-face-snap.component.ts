@@ -53,25 +53,44 @@ export class SingleFaceSnapComponent implements OnInit {
     this.getFaceSnap();
   }
 
-  onLike(): void {
+  // onLike(): void {
+  //   if (this.isLiked) {
+  //     this.unLike();
+  //   } else {
+  //     this.addLike();
+  //   }
+  // }
+
+  // addLike(faceSnapId: number) {
+  //   // this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'like');
+  //   // this.txtLikeButton = 'Liked !';
+  //   // this.isLiked = true;
+  //   this.faceSnapsService.snapFaceSnapById(faceSnapId, 'like');
+  //   this.txtLikeButton = 'Liked !';
+  //   this.isLiked = true;
+  // }
+
+  // unLike(faceSnapId: number) {
+  //   // this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unlike');
+  //   // this.txtLikeButton = 'Like it !';
+  //   // this.isLiked = false;
+  //   this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
+  //   this.txtLikeButton = 'Like it !';
+  //   this.isLiked = false;
+  // }
+
+  onLike(faceSnapId: string): void {
     if (this.isLiked) {
-      this.unLike();
+      this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
+      this.txtLikeButton = 'Liked !';
+      this.isLiked = true;
     } else {
-      this.addLike();
+      this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
+      this.txtLikeButton = 'Like it !';
+      this.isLiked = false;
     }
   }
 
-  addLike() {
-    // this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'like');
-    // this.txtLikeButton = 'Liked !';
-    // this.isLiked = true;
-  }
-
-  unLike() {
-    // this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unlike');
-    // this.txtLikeButton = 'Like it !';
-    // this.isLiked = false;
-  }
 
   // Les private se mettent à la fin
   // Private car appelé uniquement à l'interieur de la classe

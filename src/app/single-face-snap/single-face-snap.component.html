@@ -25,7 +25,7 @@
   <p>{{ currencyNumber | currency : "EUR" : "code" : "1.0-0" }}</p> -->
 
   <p>
-    <button (click)="onLike()">{{ txtLikeButton }}</button>👍
+    <button (click)="onLike(faceSnap.id)">{{ txtLikeButton }}</button>👍
     <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }">
       {{ faceSnap.snaps }}
     </span>

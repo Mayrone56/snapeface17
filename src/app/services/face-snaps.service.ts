@@ -58,12 +58,10 @@ export class FaceSnapsService {
     //   throw new Error('FaceSnap not found!');
     // }
     // return foundFaceSnap;
-    return this.http.get<FaceSnap>(`http://localhost:3000/facesnaps/${faceSnapId}`)
     return this.http.get<FaceSnap>(`http://localhost:3000/facesnaps/${faceSnapId}`);
-
   }
 
-  snapFaceSnapById(faceSnapId: string, snapType: snapType): void {
+  snapFaceSnapById(faceSnapId: number, snapType: snapType): void {
     // const faceSnap = this.getFaceSnapById(faceSnapId);
     // snapType === "like" ? faceSnap.snaps++ : faceSnap.snaps--;
     // // faceSnap.like(snapType);
