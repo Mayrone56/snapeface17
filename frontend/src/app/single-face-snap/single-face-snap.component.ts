@@ -27,7 +27,7 @@ import { CommonModule } from '@angular/common';
     // PercentPipe,
     // CurrencyPipe,
     RouterLink,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './single-face-snap.component.html',
   styleUrl: './single-face-snap.component.scss',
@@ -35,7 +35,7 @@ import { CommonModule } from '@angular/common';
 export class SingleFaceSnapComponent implements OnInit {
   // faceSnap local remplacé par le faceSnap$ Observable
   // faceSnap!: FaceSnap;
-  faceSnap$!: Observable<FaceSnap>
+  faceSnap$!: Observable<FaceSnap>;
   txtLikeButton!: string;
   isLiked!: boolean;
 
@@ -46,7 +46,7 @@ export class SingleFaceSnapComponent implements OnInit {
   constructor(
     private faceSnapsService: FaceSnapsService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.prepareInterface();
@@ -79,18 +79,17 @@ export class SingleFaceSnapComponent implements OnInit {
   //   this.isLiked = false;
   // }
 
-  onLike(faceSnapId: string): void {
+  onLike(faceSnapId: number): void {
     if (this.isLiked) {
-      this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
       this.txtLikeButton = 'Liked !';
+      this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
       this.isLiked = true;
     } else {
-      this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
       this.txtLikeButton = 'Like it !';
+      this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
       this.isLiked = false;
     }
   }
-
 
   // Les private se mettent à la fin
   // Private car appelé uniquement à l'interieur de la classe

@@ -2,7 +2,7 @@ import { snapType } from './like-type.type';
 
 export class FaceSnap {
   location?: string;
-  id: string;
+  id: number;
 
   constructor(
     public title: string,
@@ -11,7 +11,8 @@ export class FaceSnap {
     public createdDate: Date,
     public snaps: number
   ) {
-    this.id = crypto.randomUUID().substring(0, 8);
+    // this.id = crypto.randomUUID().substring(0, 8);
+    this.id = 1;
     console.log(this);
   }
 
