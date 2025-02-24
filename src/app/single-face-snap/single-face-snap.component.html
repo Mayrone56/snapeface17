@@ -1,4 +1,9 @@
-<div class="face-snap-card" [ngClass]="{ liked: isLiked }">
+<!-- La reponse du serveur sera disponible sous cet alias as faceSnap -->
+<div
+  class="face-snap-card"
+  *ngIf="faceSnap$ | async as faceSnap"
+  [ngClass]="{ liked: isLiked }"
+>
   <!-- Si on ne met pas de / avant facesnaps, l'url essaira d'ajouter facesnaps à l'url après l'id -->
   <!-- Pour naviguer vers une route absolue (et non relative), n'oubliez pas d'ajouter un  /  au début de la route demandée. -->
   <!-- Car c'est une route dynamique qui est générée à chaque fois -->
@@ -9,7 +14,7 @@
   } @else {
   <p>Pas de localisation</p>
   }
-  <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title" />
+  <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title" />
   <p>{{ faceSnap.description }}</p>
   <p>
     Facesnap crée le {{ faceSnap.createdDate | date : "d MMMM yyyy, à HH:mm" }}
@@ -20,9 +25,9 @@
   <p>{{ currencyNumber | currency : "EUR" : "code" : "1.0-0" }}</p> -->
 
   <p>
-    <button (click)="onLike()">{{ txtLikeButton }}</button>👍
-    <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.likeNb + ', 0)' }">
-      {{ faceSnap.likeNb }}
+    <button (click)="onLike(faceSnap.id)">{{ txtLikeButton }}</button>👍
+    <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }">
+      {{ faceSnap.snaps }}
     </span>
   </p>
 </div>

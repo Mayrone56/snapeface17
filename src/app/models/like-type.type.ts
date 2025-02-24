@@ -1,1 +1,1 @@
-export type LikeType = 'like' | 'unlike';
+export type snapType = 'like' | 'unlike';

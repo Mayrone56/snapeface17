@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FaceSnap } from '../models/face-snap';
 import { FaceSnapsService } from '../services/face-snaps.service';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-single-face-snap',
@@ -25,12 +27,15 @@ import { FaceSnapsService } from '../services/face-snaps.service';
     // PercentPipe,
     // CurrencyPipe,
     RouterLink,
+    CommonModule
   ],
   templateUrl: './single-face-snap.component.html',
   styleUrl: './single-face-snap.component.scss',
 })
 export class SingleFaceSnapComponent implements OnInit {
-  faceSnap!: FaceSnap;
+  // faceSnap local remplacé par le faceSnap$ Observable
+  // faceSnap!: FaceSnap;
+  faceSnap$!: Observable<FaceSnap>
   txtLikeButton!: string;
   isLiked!: boolean;
 
@@ -41,39 +46,58 @@ export class SingleFaceSnapComponent implements OnInit {
   constructor(
     private faceSnapsService: FaceSnapsService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.prepareInterface();
     this.getFaceSnap();
   }
 
-  onLike(): void {
+  // onLike(): void {
+  //   if (this.isLiked) {
+  //     this.unLike();
+  //   } else {
+  //     this.addLike();
+  //   }
+  // }
+
+  // addLike(faceSnapId: number) {
+  //   // this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'like');
+  //   // this.txtLikeButton = 'Liked !';
+  //   // this.isLiked = true;
+  //   this.faceSnapsService.snapFaceSnapById(faceSnapId, 'like');
+  //   this.txtLikeButton = 'Liked !';
+  //   this.isLiked = true;
+  // }
+
+  // unLike(faceSnapId: number) {
+  //   // this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unlike');
+  //   // this.txtLikeButton = 'Like it !';
+  //   // this.isLiked = false;
+  //   this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
+  //   this.txtLikeButton = 'Like it !';
+  //   this.isLiked = false;
+  // }
+
+  onLike(faceSnapId: string): void {
     if (this.isLiked) {
-      this.unLike();
+      this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
+      this.txtLikeButton = 'Liked !';
+      this.isLiked = true;
     } else {
-      this.addLike();
+      this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
+      this.txtLikeButton = 'Like it !';
+      this.isLiked = false;
     }
   }
 
-  addLike() {
-    this.faceSnapsService.likeFaceSnapById(this.faceSnap.id, 'like');
-    this.txtLikeButton = 'Liked !';
-    this.isLiked = true;
-  }
-
-  unLike() {
-    this.faceSnapsService.likeFaceSnapById(this.faceSnap.id, 'unlike');
-    this.txtLikeButton = 'Like it !';
-    this.isLiked = false;
-  }
 
   // Les private se mettent à la fin
   // Private car appelé uniquement à l'interieur de la classe
   private getFaceSnap() {
     // Snapshot est un aperçu instantané d'une valeur qui change au cours du temps
     const faceSnapId = this.route.snapshot.params['id'];
-    this.faceSnap = this.faceSnapsService.getFaceSnapById(faceSnapId);
+    this.faceSnap$ = this.faceSnapsService.getFaceSnapById(faceSnapId);
   }
 
   private prepareInterface() {
