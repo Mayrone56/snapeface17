@@ -5,7 +5,7 @@ import { SingleFaceSnapComponent } from './single-face-snap/single-face-snap.com
 
 export const routes: Routes = [
   {
-    // Les  :id  spécifient que ce qui se trouvera après  facesnaps/  correspondra à un paramètre qui s'appellera  id.
+    // Les :id spécifient que ce qui se trouvera après facesnaps/ correspondra à un paramètre qui s'appellera id
     path: 'facesnaps/:id',
     component: SingleFaceSnapComponent,
   },

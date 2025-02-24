@@ -1,19 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FaceSnap } from '../models/face-snap';
-import { ActivatedRoute } from '@angular/router';
 import {
-  NgStyle,
-  NgClass,
-  UpperCasePipe,
-  LowerCasePipe,
-  TitleCasePipe,
   DatePipe,
-  // DecimalPipe,
-  // PercentPipe,
-  // CurrencyPipe,
+  LowerCasePipe,
+  NgClass,
+  NgStyle,
+  TitleCasePipe,
+  UpperCasePipe,
 } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { FaceSnap } from '../models/face-snap';
 import { FaceSnapsService } from '../services/face-snaps.service';
-import { LikeType } from '../models/like-type.type';
 
 @Component({
   selector: 'app-single-face-snap',
@@ -28,11 +24,13 @@ import { LikeType } from '../models/like-type.type';
     // DecimalPipe,
     // PercentPipe,
     // CurrencyPipe,
+    RouterLink,
   ],
   templateUrl: './single-face-snap.component.html',
   styleUrl: './single-face-snap.component.scss',
 })
 export class SingleFaceSnapComponent implements OnInit {
+  faceSnap!: FaceSnap;
   txtLikeButton!: string;
   isLiked!: boolean;
 
@@ -46,10 +44,8 @@ export class SingleFaceSnapComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.txtLikeButton = 'Like it !';
-    this.isLiked = false;
-    const faceSnapId = this.route.snapshot.params['id'];
-    this.faceSnap = this.faceSnapsService.getFaceSnapById(faceSnapId);
+    this.prepareInterface();
+    this.getFaceSnap();
   }
 
   onLike(): void {
@@ -68,6 +64,19 @@ export class SingleFaceSnapComponent implements OnInit {
 
   unLike() {
     this.faceSnapsService.likeFaceSnapById(this.faceSnap.id, 'unlike');
+    this.txtLikeButton = 'Like it !';
+    this.isLiked = false;
+  }
+
+  // Les private se mettent à la fin
+  // Private car appelé uniquement à l'interieur de la classe
+  private getFaceSnap() {
+    // Snapshot est un aperçu instantané d'une valeur qui change au cours du temps
+    const faceSnapId = this.route.snapshot.params['id'];
+    this.faceSnap = this.faceSnapsService.getFaceSnapById(faceSnapId);
+  }
+
+  private prepareInterface() {
     this.txtLikeButton = 'Like it !';
     this.isLiked = false;
   }

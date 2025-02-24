@@ -42,7 +42,6 @@ export class FaceSnapsService {
       throw new Error('FaceSnap not found!');
     }
     return foundFaceSnap;
-    // foundFaceSnap.like(likeType);
   }
 
   likeFaceSnapById(faceSnapId: string, likeType: LikeType): void {
