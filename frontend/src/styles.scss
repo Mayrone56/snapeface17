@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  font-family: Roboto, Helvetica, sans-serif;
+}
+
+body {
+  p {
+    font-weight: 300;
+  }
+}
+
+button {
+  // width: 150px;
+  // height: 42px;
+  // background-color: orange;
+  // border-radius: 40px;
+  // color: black;
+  // border: none;
+  // cursor: pointer;
+}
+button:hover {
+  // background-color: rgb(189, 123, 0);
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+}
