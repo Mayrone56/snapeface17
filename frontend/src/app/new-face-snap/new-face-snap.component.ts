@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // Le fait d'avoir importé ReactiveFormsModule vous permet de lier un objet de type FormGroup à un <form> avec l'attribut formGroup .
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { FaceSnap } from '../models/face-snap';
 import { UpperCasePipe, DatePipe, CommonModule } from '@angular/common';
 import { AsyncPipe } from '@angular/common';
@@ -59,9 +59,17 @@ export class NewFaceSnapComponent implements OnInit {
     );
   }
 
-  onSubmitForm(): void {
-    // console.log(this.snapForm.value);
-    this.faceSnapsService.addFaceSnap(this.snapForm.value)
-    this.router.navigateByUrl('/facesnaps')
+  // onSubmitForm(): void {
+  //   // console.log(this.snapForm.value);
+  //   this.faceSnapsService.addFaceSnap(this.snapForm.value)
+  //   this.router.navigateByUrl('/facesnaps')
+  // }
+
+  onSubmitForm() {
+    // No memory leak problem and therefore no need to unsubscribe because we use the async pipe, it will emit once
+    this.faceSnapsService.addFaceSnap(this.snapForm.value).pipe(
+      tap(() => this.router.navigateByUrl('/facesnaps'))
+    ).subscribe();
   }
+
 }

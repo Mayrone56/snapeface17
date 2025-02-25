@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FaceSnap } from '../models/face-snap';
 import { FaceSnapsService } from '../services/face-snaps.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -46,7 +46,7 @@ export class SingleFaceSnapComponent implements OnInit {
   constructor(
     private faceSnapsService: FaceSnapsService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.prepareInterface();
@@ -80,14 +80,23 @@ export class SingleFaceSnapComponent implements OnInit {
   // }
 
   onLike(faceSnapId: number): void {
-    if (this.isLiked) {
-      this.txtLikeButton = 'Liked !';
-      this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
-      this.isLiked = true;
+    // if (this.txtLikeButton === "Like it !") {
+    if (!this.isLiked) {
+      this.faceSnap$ = this.faceSnapsService.snapFaceSnapById(faceSnapId, "like").pipe(
+        tap(() => {
+          // With this implementation, there is no need to even call .subscribe() because the template's async pipe subscribes for us
+          this.txtLikeButton = "Liked !"
+          this.isLiked = true
+        })
+      );
     } else {
-      this.txtLikeButton = 'Like it !';
-      this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unlike');
-      this.isLiked = false;
+      this.faceSnap$ = this.faceSnapsService.snapFaceSnapById(faceSnapId, "unlike").pipe(
+        tap(() => {
+          this.txtLikeButton = "Like it !"
+          this.isLiked = false;
+
+        })
+      );
     }
   }
 
