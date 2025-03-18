@@ -5,9 +5,9 @@ import {
   importProvidersFrom,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     { provide: LOCALE_ID, useValue: 'fr-FR' },
     // Regarder sur la doc d'Angular Providing HttpClient through dependency injection
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([AuthInterceptor])),
   ],
 };
